@@ -109,12 +109,13 @@ function successRead(entries){
      var n=entries.length;
      alert("varrendo "+n+" entradas...");
      for (i=0; i < entries.length; i++) {
+     	alert("Pegando entrada "+i);
         if(entries[i].isDirectory == true) {
-            objectType = 'Directory';
             alert('Pasta');
+            objectType = 'Directory';
         } else {
-            objectType = 'File';
             alert("arquivo");
+            objectType = 'File';
             alert(entries[i].name);
         }
         try{
