@@ -66,7 +66,9 @@ function goBuscaPasta() {
     }
 
     function fail(evt) {
+    	alert("Falhou");
         console.log(evt.target.error.code);
+        alert(evt.target.error.code+' '+evt.target.error.message);
     }
 	
 /*
