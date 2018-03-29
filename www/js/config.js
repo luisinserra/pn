@@ -111,14 +111,19 @@ function successRead(entries){
      for (i=0; i < entries.length; i++) {
         if(entries[i].isDirectory == true) {
             objectType = 'Directory';
+            alert('Pasta');
         } else {
             objectType = 'File';
             alert("arquivo");
             alert(entries[i].name);
         }
-        document.getElementById('spanResposta').append('<li><h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p></li>');
+        try{
+        	document.getElementById('spanResposta').append('<li><h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p></li>');
+        } catch(e){
+        	alert("Erro apendando. "+e.message);
+        }
     }
-    document.getElementById('spanResposta').listview("refresh");
+    //document.getElementById('spanResposta').listview("refresh");
 }
 
 function onErrorRead2(error) {
