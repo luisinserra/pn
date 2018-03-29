@@ -178,7 +178,7 @@ function onFileSystemSuccess2(fs) {
     dirReader.readEntries(successRead,onErrorRead);
 }
 
-function successRead(entries){
+function successRead2(entries){
     alert("sucesso lendo");
      var i;
      var objectType;
