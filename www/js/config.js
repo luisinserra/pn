@@ -70,7 +70,8 @@ function goBuscaPasta() {
     	alert("Errou leitura, "+erro.code+", "+erro.message);
     }
     function okLeu(entradas){
-    	alert("Entradas: "+entradas);
+    	//alert("Entradas: "+entradas);
+    	successRead(entradas);
     }
 
     function fail(evt) {
