@@ -102,7 +102,7 @@ function onFileSystemSuccess(fs) {
     alert("reader criado para ler de "+fs.root.fullPath+"...");
     dirReader.readEntries(successRead,onErrorRead);
 }
-function successRead(entries){
+function successRead(entries){ 
     alert("sucesso lendo");
      var i;
      var objectType;
