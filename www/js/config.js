@@ -108,6 +108,8 @@ function successRead(entries){
      var objectType;
      var n=entries.length;
      alert("varrendo "+n+" entradas...");
+     var dump=JSON.stringify(entries);
+     alert(dump);
      for (i=0; i < entries.length; i++) {
      	alert("Pegando entrada "+i);
         if(entries[i].isDirectory == true) {
