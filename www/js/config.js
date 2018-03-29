@@ -108,20 +108,20 @@ function successRead(entries){
      var objectType;
      var n=entries.length;
      alert("varrendo "+n+" entradas...");
-     var dump=JSON.stringify(entries);
+     //var dump=JSON.stringify(entries);
      alert(dump);
      for (i=0; i < entries.length; i++) {
      	alert("Pegando entrada "+i);
         if(entries[i].isDirectory == true) {
-            alert('Pasta');
+            //alert('Pasta');
             objectType = 'Directory';
         } else {
-            alert("arquivo");
+            //alert("arquivo");
             objectType = 'File';
-            alert(entries[i].name);
+            //alert(entries[i].name);
         }
         try{
-        	document.getElementById('spanResposta').append('<li><h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p></li>');
+        	document.getElementById('spanResposta').append('<h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p><br>');
         } catch(e){
         	alert("Erro apendando. "+e.message);
         }
