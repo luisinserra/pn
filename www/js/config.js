@@ -85,7 +85,7 @@ function onFileSystemSuccess(fs) {
     alert("Sucesso");
     var pathInicial=fs.root.fullPath;
     alert("Entrando com "+pathInicial+"...");
-    fs.root.fullPath = getPastaAtual();
+    fs.root.fullPath = document.getElementById('tPasta').value;
     alert("mudou o path...");
     var dirReader = fs.root.createReader();
     alert("reader criado para ler de "+fs.root.fullPath+"...");
