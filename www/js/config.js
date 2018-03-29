@@ -33,7 +33,7 @@ function getPastaAtual(){
 }
 function goBuscaPasta() {
 	var pastaAtual=document.getElementById('tPasta').value;
-	var pasta='file://'+getPastaAtual();
+	var pasta='file://'+pastaAtual;
 	alert("Pasta: "+pasta);
 /*	
 	window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
