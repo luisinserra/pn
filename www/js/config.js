@@ -63,6 +63,14 @@ function goBuscaPasta() {
 	function onResolveSuccess(fileEntry) {
 		alert("resolvido.");
         console.log(fileEntry.name);
+        var reader = fileEntry.createReader();
+        reader.readEntries(okLeu, naoLeu);
+    }
+    function naoLeu(erro){
+    	alert("Errou leitura, "+erro.code+", "+erro.message);
+    }
+    function okLeu(entradas){
+    	alert("Entradas: "+entradas);
     }
 
     function fail(evt) {
