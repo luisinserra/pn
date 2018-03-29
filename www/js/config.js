@@ -53,9 +53,9 @@ function goBuscaPasta() {
 	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
 		//window.requestFileSystem(PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
-		alert("Passou passo 1");
+		//alert("Passou passo 1");
 		window.resolveLocalFileSystemURI(pasta, onResolveSuccess, fail);
-		alert("Passou passo 2");
+		//alert("Passou passo 2");
 	}  catch(e){
 		alert("Erro: "+e.message);
 	}
@@ -95,9 +95,9 @@ function goBuscaPasta() {
 function onFileSystemSuccess(fs) {
     alert("Sucesso");
     var pathInicial=fs.root.fullPath;
-    alert("Entrando com "+pathInicial+"...");
+    //alert("Entrando com "+pathInicial+"...");
     fs.root.fullPath = document.getElementById('tPasta').value;
-    alert("mudou o path...");
+    //alert("mudou o path...");
     var dirReader = fs.root.createReader();
     alert("reader criado para ler de "+fs.root.fullPath+"...");
     dirReader.readEntries(successRead,onErrorRead);
@@ -109,7 +109,7 @@ function successRead(entries){
      var n=entries.length;
      alert("varrendo "+n+" entradas...");
      //var dump=JSON.stringify(entries);
-     alert(dump);
+     //alert(dump);
      for (i=0; i < entries.length; i++) {
      	alert("Pegando entrada "+i);
         if(entries[i].isDirectory == true) {
