@@ -4,21 +4,12 @@ function initConfig(){
     initialize: function() {
         this.bindEvents();
     },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
-    // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
@@ -42,7 +33,7 @@ function getPastaAtual(){
 }
 function goBuscaPasta() {
 	var pastaAtual=document.getElementById('tPasta').value;
-	var pasta='file://'+pastaAtual;
+	var pasta='file://'+getPastaAtual();
 	alert("Pasta: "+pasta);
 /*	
 	window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
@@ -60,7 +51,8 @@ function goBuscaPasta() {
 	}
 
 	try {
-		window.requestFileSystem(PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
+		window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
+		//window.requestFileSystem(PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
 		alert("Passou passo 1");
 		window.resolveLocalFileSystemURI(pasta, onResolveSuccess, fail);
 		alert("Passou passo 2");
@@ -93,7 +85,7 @@ function onFileSystemSuccess(fs) {
     alert("Sucesso");
     var pathInicial=fs.root.fullPath;
     alert("Entrando com "+pathInicial+"...");
-    fs.root.fullPath = '/';
+    fs.root.fullPath = getPastaAtual();
     alert("mudou o path...");
     var dirReader = fs.root.createReader();
     alert("reader criado para ler de "+fs.root.fullPath+"...");
@@ -104,7 +96,7 @@ function successRead(entries){
      var i;
      var objectType;
      var n=entries.length;
-     alert("varrendo "+n+"...");
+     alert("varrendo "+n+" entradas...");
      for (i=0; i < entries.length; i++) {
         if(entries[i].isDirectory == true) {
             objectType = 'Directory';
