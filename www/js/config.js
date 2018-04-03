@@ -40,13 +40,7 @@ function getPastaAtual(){
 function goBuscaPasta() {
 	var pastaAtual=document.getElementById('tPasta').value;
 	var pasta='file://'+pastaAtual;
-	//alert("Pasta: "+pasta);
-
-	if (typeof LocalFileSystem === 'undefined') {
-	    var PERSISTENT = window.PERSISTENT;
-	} else {
-	    var PERSISTENT = LocalFileSystem.PERSISTENT ;
-	}
+	alert("Pasta: "+pasta);
 
 	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
@@ -68,7 +62,7 @@ function goBuscaPasta() {
     	alert("Errou leitura, "+erro.code+", "+erro.message);
     }
     function okLeu(entradas){
-    	//alert("Entradas: "+entradas);
+    	alert("Entradas: "+entradas);
     	successRead(entradas);
     }
 
@@ -101,7 +95,7 @@ function onFileSystemSuccess(fs) {
     dirReader.readEntries(successRead,onErrorRead);
 }
 function successRead(entries){ 
-    //alert("sucesso lendo");
+    alert("sucesso lendo");
      var i;
      var objectType;
      var n=entries.length;
