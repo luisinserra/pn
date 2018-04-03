@@ -128,6 +128,7 @@ function successRead(entries){
         		conteudo+='<b>'+entries[i].name+'</b><br>';
         		conteudo+=entries[i].toURI()+"<br>";
         		conteudo+=objectType+'<br>';
+        		document.getElementById('spanResposta').innerHTML=conteudo;
         	}
         } catch(e){
         	alert("Erro apendando. "+e.message);
