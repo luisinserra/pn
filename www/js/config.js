@@ -122,7 +122,13 @@ function successRead(entries){
         }
         try{
         	//document.getElementById('spanResposta').append('<h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p><br>');
-        	document.getElementById('spanResposta').append(entries[i].name + '\n' + entries[i].toURI() + "\n" + objectType + "\n");
+        	var conteudo=document.getElementById('spanResposta').innerHTML;
+        	if (conteudo != ''){
+        		conteudo+='<br><br>';
+        		conteudo+='<b>'+entries[i].name+'</b><br>';
+        		conteudo+=entries[i].toURI()+"<br>";
+        		conteudo+=objectType+'<br>';
+        	}
         } catch(e){
         	alert("Erro apendando. "+e.message);
         }
