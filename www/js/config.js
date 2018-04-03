@@ -34,15 +34,7 @@ function getPastaAtual(){
 function goBuscaPasta() {
 	var pastaAtual=document.getElementById('tPasta').value;
 	var pasta='file://'+pastaAtual;
-	alert("Pasta: "+pasta);
-/*	
-	window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
-	try {
-		window.resolveLocalFileSystemURI(pasta, pastaSucesso, pastaErro);
-	}  catch(e){
-		alert("Erro: "+e.message);
-	}
-*/
+	//alert("Pasta: "+pasta);
 
 	if (typeof LocalFileSystem === 'undefined') {
 	    var PERSISTENT = window.PERSISTENT;
@@ -61,7 +53,7 @@ function goBuscaPasta() {
 	}
 
 	function onResolveSuccess(fileEntry) {
-		alert("resolvido.");
+		//alert("resolvido.");
         console.log(fileEntry.name);
         var reader = fileEntry.createReader();
         reader.readEntries(okLeu, naoLeu);
@@ -103,15 +95,16 @@ function onFileSystemSuccess(fs) {
     dirReader.readEntries(successRead,onErrorRead);
 }
 function successRead(entries){ 
-    alert("sucesso lendo");
+    //alert("sucesso lendo");
      var i;
      var objectType;
      var n=entries.length;
      alert("varrendo "+n+" entradas...");
      //var dump=JSON.stringify(entries);
      //alert(dump);
+     document.getElementById('spanResposta').innerHTML='';
+     var yInicial=240;
      for (i=0; i < entries.length; i++) {
-     	alert("Pegando entrada "+i);
         if(entries[i].isDirectory == true) {
             //alert('Pasta');
             objectType = 'Directory';
@@ -123,13 +116,20 @@ function successRead(entries){
         try{
         	//document.getElementById('spanResposta').append('<h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p><br>');
         	var conteudo=document.getElementById('spanResposta').innerHTML;
-        	if (conteudo != ''){
-        		conteudo+='<br><br>';
+        	if (objectType == 'Directory'){
+	        	if (conteudo != ''){
+	        		conteudo+='<br><br>';
+	        	}
+	        	var top=yInicial+(i*50);
+	        	var nome=entries[i].name;
+	        	var parte='<span id="spanLin'+i+'" style="padding: 10px;position:absolute;width:350px;height:50px;top:'+top+'px;left:0px;right:0px;margin:auto;"><a href="javascript:getPasta(\''+nome+'\');" class="z" style="font-size: 25px;">'+nome+'</a></span><br><br>';
+	    		// conteudo+='<b>'+entries[i].name+'</b><br>';
+	    		// conteudo+=entries[i].toURI()+"<br>";
+	    		// conteudo+=objectType+'<br>';
+	    		document.getElementById('spanResposta').innerHTML=parte;
+	    		var elemento=document.getElementById('spanLin'+i);
+        		elemento.classList.add('cantinhos');
         	}
-    		conteudo+='<b>'+entries[i].name+'</b><br>';
-    		conteudo+=entries[i].toURI()+"<br>";
-    		conteudo+=objectType+'<br>';
-    		document.getElementById('spanResposta').innerHTML=conteudo;
         } catch(e){
         	alert("Erro apendando. "+e.message);
         }
