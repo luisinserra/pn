@@ -62,7 +62,7 @@ function goBuscaPasta() {
     	alert("Errou leitura, "+erro.code+", "+erro.message);
     }
     function okLeu(entradas){
-    	alert("Entradas: "+entradas);
+    	//alert("Entradas: "+entradas);
     	successRead(entradas);
     }
 
@@ -104,6 +104,7 @@ function successRead(entries){
      //alert(dump);
      document.getElementById('spanResposta').innerHTML='';
      var yInicial=240;
+     var conta=0;
      for (i=0; i < entries.length; i++) {
         if(entries[i].isDirectory == true) {
             //alert('Pasta');
@@ -120,7 +121,7 @@ function successRead(entries){
 	        	if (conteudo != ''){
 	        		conteudo+='<br><br>';
 	        	}
-	        	var top=yInicial+(i*30);
+	        	var top=yInicial+(conta*30);
 	        	var nome=entries[i].name;
 	        	var parte='<span id="spanLin'+i+'" style="padding: 5px;position:absolute;width:350px;height:30px;top:'+top+'px;left:0px;right:0px;margin:auto;"><a href="javascript:getPasta(\''+nome+'\');" class="z" style="font-size: 15px;">'+nome+'</a></span><br><br>';
 	    		// conteudo+='<b>'+entries[i].name+'</b><br>';
@@ -129,6 +130,7 @@ function successRead(entries){
 	    		document.getElementById('spanResposta').innerHTML+=parte;
 	    		var elemento=document.getElementById('spanLin'+i);
         		elemento.classList.add('cantinhos');
+        		conta+=1;
         	}
         } catch(e){
         	alert("Erro apendando. "+e.message);
@@ -226,5 +228,5 @@ function onErrorRead(error) {
 function getPasta(pasta){
 	var anterior=document.getElementById('tPasta').value;
 	window.localStorage.setItem('parmPasta',anterior+'/'+pasta);
-	window.open('config.html','_top');
+	window.open('config.html');
 }
