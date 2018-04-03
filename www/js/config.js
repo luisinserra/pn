@@ -121,7 +121,8 @@ function successRead(entries){
             //alert(entries[i].name);
         }
         try{
-        	document.getElementById('spanResposta').append('<h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p><br>');
+        	//document.getElementById('spanResposta').append('<h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p><br>');
+        	document.getElementById('spanResposta').append(entries[i].name + '<br>' + entries[i].toURI() + '<strong>' + objectType + '</strong>'+"\n");
         } catch(e){
         	alert("Erro apendando. "+e.message);
         }
