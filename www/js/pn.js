@@ -28,8 +28,8 @@ function dbSucesso(tx, results){
 	var n=results.rows.length;
 	var mensagem ="Temos "+n+" registros, saltar login...";
 	if (n == 0){
-		window.open('config.html','_top');
+		location.href="config.html";
 	} else {
-		window.open('menu.html','_top');
+		location.href="menu.html";
 	}
 }

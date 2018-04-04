@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+
+	<link rel="stylesheet" type="text/css" href="css/geral.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/menu.css" />
+	<script type="text/javascript" src="js/menu.js"></script>
+	<script type="text/javascript" src="js/urlen.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<title>Pesquisa em Notas</title>
+</head>
+<body onload="initMenu();">
+
+<div class="menu1" id='m1' style="position:fixed;top:0;width: 100%;z-index: 2020;">
+    <ul>
+        <li><a class="menu1one" href="index.html">Home</a></li>
+    </ul> 
+
+    <ul>
+        <li style="z-index: 7070;"><a class="menu1two"
+            href="config.html">Configuração</a>
+    </ul>
+</div>
+
+
+	<br>
+	<br>
+	<br>
+
+	<div class="row">
+		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			<span style="float: right;"><b>Termo</b></span>
+		</div>
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<input type="text" id="tParm" size="15" maxlength="30">
+			&nbsp;
+				<span class="box-cinza cantinhos" style="width: 100px;padding: 10px;background-color: #267cb5;color: white;cursor:pointer;" onclick="goBuscaTermo();">Pesquisar</span>
+		</div>
+	</div>
+	<br>
+	<span id="saida"></span>
+</body>
+</html>

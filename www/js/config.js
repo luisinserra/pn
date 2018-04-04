@@ -22,12 +22,14 @@ function initConfig(){
 	        console.log('Received Event: ' + id);
 			var pastaAtual=getPastaAtual();
 			document.getElementById('tPasta').value=pastaAtual;
+			trazRegistro();
 			putMemo('initi',1);
 	    }
 	};
 	if (getMemo('initi') == 0){
 		var pastaAtual=getPastaAtual();
 		document.getElementById('tPasta').value=pastaAtual;
+		trazRegistro();
 	}
 }
 function getPastaAtual(){
@@ -40,7 +42,7 @@ function getPastaAtual(){
 function goBuscaPasta() {
 	var pastaAtual=document.getElementById('tPasta').value;
 	var pasta='file://'+pastaAtual;
-	alert("Pasta: "+pasta);
+	//alert("Pasta: "+pasta);
 
 	try {
 		window.requestFileSystem(LocalFileSystem.PERSISTENT,0,  onFileSystemSuccess, onErrorRead);
@@ -95,11 +97,11 @@ function onFileSystemSuccess(fs) {
     dirReader.readEntries(successRead,onErrorRead);
 }
 function successRead(entries){ 
-    alert("sucesso lendo");
+    //alert("sucesso lendo");
      var i;
      var objectType;
      var n=entries.length;
-     alert("varrendo "+n+" entradas...");
+     //alert("varrendo "+n+" entradas...");
      //var dump=JSON.stringify(entries);
      //alert(dump);
      document.getElementById('spanResposta').innerHTML='';
@@ -229,4 +231,102 @@ function getPasta(pasta){
 	var anterior=document.getElementById('tPasta').value;
 	window.localStorage.setItem('parmPasta',anterior+'/'+pasta);
 	window.open('config.html');
+}
+function goPastaDefinida(){
+	db = window.openDatabase("DbPesqNotas", "1.0", "DbPesqNotas", 10);
+	db.transaction(setDB, erroOpen, sucesso);
+}
+function setDB(tx){
+	tx.executeSql('CREATE TABLE IF NOT EXISTS pesqnotas (id integer primary key, pasta text)');
+}
+function erroOpen(erro){
+	alert("Erro set database..."+erro.code+":"+erro.message);
+}
+function sucesso(){
+	checaLogin();
+}
+function nova(parm){
+	console.log("estou em nova...");
+}
+function checaLogin(){
+    db.transaction(getRegistro, errorCheca,nova);
+}
+function errorCheca(erro){
+	alert("Erro lendo registros..."+erro.code+":"+erro.message);
+}
+function getRegistro(tx){
+	tx.executeSql('SELECT * FROM pesqnotas', [], dbSucesso, dbErro);
+}
+function dbErro(erro){
+	alert("Erro de erro..."+erro.code+":"+erro.message)
+}
+function dbSucesso(tx, results){
+	var n=results.rows.length;
+	var mensagem ="Temos "+n+" registros, saltar login...";
+	if (n == 0){
+		db.transaction(salvarPasta, erroPasta, successoPasta);
+	} else {
+		db.transaction(alterarPasta, erroPasta, successoPasta);
+	}
+}
+function successoPasta(){
+	alert("Sucesso pasta");
+}
+function erroPasta(erro){
+	alert("Erro ..."+erro.code+":"+erro.message);
+}
+function nullHandler(){
+	alert("Erro de null handler");
+}
+function errorHandler(){
+	alert("Erro de error handler");
+}
+function salvarPasta(tx){
+	var pasta=document.getElementById('tPasta').value;
+	tx.executeSql('DROP TABLE IF EXISTS pesqnotas');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS pesqnotas (id unique, pasta TEXT)');
+	tx.executeSql('INSERT INTO pesqnotas(id, pasta) VALUES (?,?)',[1,pasta],nullHandler,errorHandler);
+	alert("Sistema salvo");
+	return false;
+}
+function alterarPasta(tx){
+	console.log("Pondo na pasta...");
+	var pasta=document.getElementById('tPasta').value; 
+	console.log("pondo em pasta "+pasta+"...");
+	tx.executeSql('UPDATE pesqnotas set pasta=?',[pasta],deuCerto,deuRuim);
+	return false;
+}
+function deuCerto(tx){
+	console.log("Deu certo");
+}
+function deuRuim(erro){
+	console.log("Erro deu Ruim..."+erro.code+":"+erro.message);
+}
+
+function trazRegistro(){
+	try {
+		db = window.openDatabase("DbPesqNotas", "1.0", "DbPesqNotas", 10);
+	} catch (e){}
+	db.transaction(getGravado, erroPega,OkPega);
+}
+function erroPega(erro){
+	console.log("Erro lendo registros..."+erro.code+":"+erro.message);
+}
+function OkPega(){
+	console.log("leu");
+}
+function getGravado(tx){
+	tx.executeSql('SELECT * FROM pesqnotas', [], okPego, erroPego);
+}
+function erroPego(erro){
+	console.log("Erro lendo registros..."+erro.code+":"+erro.message);
+}
+function okPego(tx, results){
+	var n=results.rows.length;
+	if (n > 0){
+		var pasta=results.rows.item(0).pasta;
+		console.log("Trouxe "+pasta);
+		document.getElementById('tPasta').value=pasta;
+	}
+	console.log("Varreu "+n);
 }
