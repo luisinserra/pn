@@ -1,5 +1,6 @@
 function initConfig(){
 	putMemo('initi',0);
+/*
 	var app = {
 	    // Application Constructor
 	    initialize: function() {
@@ -26,6 +27,7 @@ function initConfig(){
 			putMemo('initi',1);
 	    }
 	};
+*/	
 	if (getMemo('initi') == 0){
 		var pastaAtual=getPastaAtual();
 		document.getElementById('tPasta').value=pastaAtual;
@@ -360,6 +362,8 @@ function pegouUm(fileSystem){
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
 	try{
 		fileSystem.root.getFile(arquivo, null, gotFileEntry, erroPego);
+		var x=k;
+		alert("passou o root...");
 		//window.resolveLocalFileSystemURI(pasta, aberto, erroPego);
 	} catch (e){
 		alert("Ferrou");
