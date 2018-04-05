@@ -319,7 +319,12 @@ function getGravado(tx){
 	tx.executeSql('SELECT * FROM pesqnotas', [], okPego, erroPego);
 }
 function erroPego(erro){
-	console.log("Erro lendo registros..."+erro.code+":"+erro.message);
+	var msg="Erro lendo registros...";
+	if (window.localStorage.getItem('msgErro') != null) {
+		msg=window.localStorage.getItem('msgErro');
+		window.localStorage.removeItem('msgErro');
+	}
+	console.log(msg+' '+erro.code+":"+erro.message);
 }
 function okPego(tx, results){
 	var n=results.rows.length;
@@ -329,4 +334,29 @@ function okPego(tx, results){
 		document.getElementById('tPasta').value=pasta;
 	}
 	console.log("Varreu "+n);
+}
+
+function abrindoArquivo(){
+	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
+}
+function pegouUm(fileSystem){
+	window.localStorage.setItem('msgErro','Erro gerado por função pegouUm');
+	var arquivo=document.getElementById('tPasta').value;
+	arquivo+='/manualBackup.json';
+	fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
+}
+function aberto(fileEntry){
+	window.localStorage.setItem('msgErro','Erro gerado por função aberto');
+	console.log("Passou abertura passo 1");
+	fileEntry.file(gotFile, erroPego);
+}
+function gotFile(file){
+	var reader = new FileReader();
+	reader.onloadend = function(e){
+		var lido=this.result;
+		alert("Leu o resultado");
+		alert(lido);
+	};
+	reader.readAsText(file);
 }
