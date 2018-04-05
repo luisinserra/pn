@@ -344,18 +344,22 @@ function abrindoArquivo(){
 function pegouUm(fileSystem){
 	window.localStorage.setItem('msgErro','Erro gerado por função pegouUm');
 	var arquivo=document.getElementById('tPasta').value;
+	var pasta=arquivo;
 	arquivo+='/manualBackup.json';
 	alert("Arquivo: "+arquivo);
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
 	try{
-		window.resolveLocalFileSystemURI(arquivo, gotFile, erroPego);
+		window.resolveLocalFileSystemURI(pasta, gotFile, erroPego);
+		alert("Resolveu.");
 	} catch (e){
 		alert(e.message);
 	}
+	alert("Deve chamar o gotFile...");
 }
 function aberto(fileEntry){
 	window.localStorage.setItem('msgErro','Erro gerado por função aberto');
 	console.log("Passou abertura passo 1");
+	var reader = fileEntry.createReader();
 	fileEntry.file(gotFile, erroPego);
 }
 function gotFile(file){
