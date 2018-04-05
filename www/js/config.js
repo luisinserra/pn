@@ -347,6 +347,10 @@ function pegouUm(fileSystem){
 	arquivo+='/manualBackup.json';
 	alert("Arquivo: "+arquivo);
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
+	try{
+	} catch (e){
+		alert(e.message);
+	}
 	window.resolveLocalFileSystemURL(arquivo, gotFile, erroPego);
 }
 function aberto(fileEntry){
