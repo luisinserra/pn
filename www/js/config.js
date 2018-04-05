@@ -371,6 +371,7 @@ function aberto(fileEntry){
 	//alert("Criou reader para pasta.");
 	var arquivo=document.getElementById('tPasta').value;
 	arquivo+='/manualBackup.json';
+	fileSystem.root.getFile(arquivo, { create: false }, gotFileEntry, erroPego);
 	try {
 		var reader = arquivo.createReader();
 		alert("Agora reader para arquivo");
@@ -378,6 +379,10 @@ function aberto(fileEntry){
 	} catch (e){
 		alert(e.message);
 	}
+}
+function gotFileEntry(fileEntry){
+	window.localStorage.setItem('msgErro','Erro gerado por função gotFileEntry');
+	fileEntry.file(gotFile, erroPego);
 }
 function gotFile(file){
 	alert("Definido reader...");
