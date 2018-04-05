@@ -340,6 +340,7 @@ function abrindoArquivo(){
 	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
+    var pasta=document.getElementById('tPasta').value;
 	try{
 		window.resolveLocalFileSystemURI(pasta, gotFile, erroPego);
 		alert("Resolveu.");
