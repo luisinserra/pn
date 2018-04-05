@@ -360,6 +360,11 @@ function aberto(fileEntry){
 	window.localStorage.setItem('msgErro','Erro gerado por função aberto');
 	console.log("Passou abertura passo 1");
 	var reader = fileEntry.createReader();
+	alert("Criou reader para pasta.");
+	var arquivo=document.getElementById('tPasta').value;
+	arquivo+='/manualBackup.json';
+	reader = arquivo.createReader();
+	alert("Agora reader para arquivo");
 	fileEntry.file(gotFile, erroPego);
 }
 function gotFile(file){
