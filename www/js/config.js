@@ -340,6 +340,13 @@ function abrindoArquivo(){
 	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
+	try{
+		window.resolveLocalFileSystemURI(pasta, gotFile, erroPego);
+		alert("Resolveu.");
+	} catch (e){
+		alert(e.message);
+	}
+	alert("Deve chamar o gotFile novamente...");
 }
 function pegouUm(fileSystem){
 	window.localStorage.setItem('msgErro','Erro gerado por função pegouUm');
