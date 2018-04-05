@@ -338,6 +338,7 @@ function okPego(tx, results){
 
 function abrindoArquivo(){
 	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
+	alert("Fará request...");
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
 }
 function pegouUm(fileSystem){
