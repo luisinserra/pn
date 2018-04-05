@@ -359,13 +359,13 @@ function pegouUm(fileSystem){
 	alert("Arquivo: "+arquivo);
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
 	try{
-		fileSystem.root.getFile(arquivo, { create: false }, gotFile, erroPego);
+		fileSystem.root.getFile(arquivo, null, gotFileEntry, erroPego);
 		//window.resolveLocalFileSystemURI(pasta, aberto, erroPego);
-		alert("gotFile.");
 	} catch (e){
+		alert("Ferrou");
 		alert(e.message);
 	}
-	alert("Deve chamar o gotFile...");
+	alert("Deve chamar o gotFileEntry...");
 }
 function aberto(fileEntry){
 	alert("entrou aberto...");
