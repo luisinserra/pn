@@ -144,7 +144,7 @@ function successRead(entries){
 			            console.log("Text is: "+this.result);
 			            document.getElementById('spanResposta').innerHTML+=this.result;
 			        };
-			        reader.readAsText(file);
+			        reader.readAsText(arquivo);
         			lido=1;
         		}
         	}
