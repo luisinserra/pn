@@ -389,6 +389,7 @@ function aberto(fileEntry){
 	}
 }
 function gotFileEntry(fileEntry){
+	window.localStorage.setItem('erroGetFile','Entrou no gotFileEntry...');
 	alert("gotFileEntry");
 	window.localStorage.setItem('msgErro','Erro gerado por função gotFileEntry');
 	try {
