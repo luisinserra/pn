@@ -385,8 +385,14 @@ function aberto(fileEntry){
 	}
 }
 function gotFileEntry(fileEntry){
+	alert("gotFileEntry");
 	window.localStorage.setItem('msgErro','Erro gerado por função gotFileEntry');
-	fileEntry.file(gotFile, erroPego);
+	try {
+		fileEntry.file(gotFile, erroPego);
+	} catch (e){
+		alert("Ferrou gotFileEntry");
+		alert(e.message);
+	}
 }
 function gotFile(file){
 	alert("Definido reader...");
