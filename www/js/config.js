@@ -340,7 +340,8 @@ function okPego(tx, results){
 
 function abrindoArquivo(){
 	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
+	//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
+	window.requestFileSystem([LocalFileSystem](../localfilesystem/localfilesystem.html).PERSISTENT, 0, pegouUm, erroPego);
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
 /*
     var pasta=document.getElementById('tPasta').value;
