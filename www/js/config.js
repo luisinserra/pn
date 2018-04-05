@@ -348,10 +348,10 @@ function pegouUm(fileSystem){
 	alert("Arquivo: "+arquivo);
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
 	try{
+		window.resolveLocalFileSystemURL(arquivo, gotFile, erroPego);
 	} catch (e){
 		alert(e.message);
 	}
-	window.resolveLocalFileSystemURL(arquivo, gotFile, erroPego);
 }
 function aberto(fileEntry){
 	window.localStorage.setItem('msgErro','Erro gerado por função aberto');
