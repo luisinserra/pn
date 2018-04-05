@@ -340,8 +340,8 @@ function okPego(tx, results){
 
 function abrindoArquivo(){
 	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
-	//window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
-	window.requestFileSystem([LocalFileSystem](../localfilesystem/localfilesystem.html).PERSISTENT, 0, pegouUm, erroPego);
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
+	// window.requestFileSystem([LocalFileSystem](../localfilesystem/localfilesystem.html).PERSISTENT, 0, pegouUm, erroPego);
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
 /*
     var pasta=document.getElementById('tPasta').value;
@@ -376,6 +376,8 @@ function pegouUm(fileSystem){
 		window.localStorage.setItem('erroGetFile',e.message);
 		alert(e.message);
 	}
+	window.resolveLocalFileSystemURI(arquivo, gotFileEntry, erroPego);
+	alert("Colocado resolvedor no arquivo...");
 }
 function aberto(fileEntry){
 	alert("entrou aberto...");
