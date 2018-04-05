@@ -360,11 +360,12 @@ function pegouUm(fileSystem){
 	arquivo+='/manualBackup.json';
 	alert("Arquivo: "+arquivo);
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
-	try{
 		fileSystem.root.getFile(arquivo, null, gotFileEntry, erroPego);
 		alert("passou o root...");
 		//window.resolveLocalFileSystemURI(pasta, aberto, erroPego);
 		alert("Deve chamar o gotFileEntry...");
+	try{
+		var x=1;
 	} catch (e){
 		alert("Ferrou");
 		window.localStorage.setItem('erroGetFile',e.message);
