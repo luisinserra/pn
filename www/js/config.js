@@ -338,18 +338,16 @@ function okPego(tx, results){
 
 function abrindoArquivo(){
 	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
-	alert("Fará request...");
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
-	alert("Request feito");
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
 }
 function pegouUm(fileSystem){
-	alert("em pegouUm...");
 	window.localStorage.setItem('msgErro','Erro gerado por função pegouUm');
 	var arquivo=document.getElementById('tPasta').value;
 	arquivo+='/manualBackup.json';
 	alert("Arquivo: "+arquivo);
-	fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
+	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
+	window.resolveLocalFileSystemURL(arquivo, gotFile, erroPego);
 }
 function aberto(fileEntry){
 	window.localStorage.setItem('msgErro','Erro gerado por função aberto');
