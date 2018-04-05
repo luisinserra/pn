@@ -412,3 +412,7 @@ function gotFile(file){
 	reader.readAsText(file);
 	alert("Acionado");
 }
+function getls(){
+	var msg=window.localStorage.getItem('msgErro');
+	alert(msg);
+}
