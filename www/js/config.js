@@ -415,3 +415,7 @@ function getls(){
 	var msg=window.localStorage.getItem('msgErro');
 	alert(msg);
 }
+function getErroFile(){
+	var msg=window.localStorage.getItem('erroGetFile');
+	alert(msg);
+}
