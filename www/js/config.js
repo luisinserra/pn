@@ -340,6 +340,7 @@ function abrindoArquivo(){
 	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
+/*
     var pasta=document.getElementById('tPasta').value;
 	try{
 		window.resolveLocalFileSystemURI(pasta, gotFile, erroPego);
@@ -348,6 +349,7 @@ function abrindoArquivo(){
 		alert(e.message);
 	}
 	alert("Deve chamar o gotFile novamente...");
+*/
 }
 function pegouUm(fileSystem){
 	window.localStorage.setItem('msgErro','Erro gerado por função pegouUm');
@@ -357,14 +359,16 @@ function pegouUm(fileSystem){
 	alert("Arquivo: "+arquivo);
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
 	try{
-		window.resolveLocalFileSystemURI(arquivo, aberto, erroPego);
-		alert("Resolveu.");
+		fileSystem.root.getFile(arquivo, { create: false }, gotFile, erroPego);
+		//window.resolveLocalFileSystemURI(pasta, aberto, erroPego);
+		alert("gotFile.");
 	} catch (e){
 		alert(e.message);
 	}
 	alert("Deve chamar o gotFile...");
 }
 function aberto(fileEntry){
+	alert("entrou aberto...");
 	window.localStorage.setItem('msgErro','Erro gerado por função aberto');
 	alert("Passou abertura passo 1");
 	//var reader = fileEntry.createReader();
