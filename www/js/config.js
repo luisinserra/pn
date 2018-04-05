@@ -118,6 +118,7 @@ function successRead(entries){
             objectType = 'File';
             //alert(entries[i].name);
         }
+        var lido=0;
         try{
         	//document.getElementById('spanResposta').append('<h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p><br>');
         	var conteudo=document.getElementById('spanResposta').innerHTML;
@@ -135,6 +136,17 @@ function successRead(entries){
 	    		var elemento=document.getElementById('spanLin'+i);
         		elemento.classList.add('cantinhos');
         		conta+=1;
+        	} else {
+        		if (lido == 0){
+        			var arquivo=entries[i];
+        			var reader = new FileReader();
+        			reader.onloadend = function(e) {
+			            console.log("Text is: "+this.result);
+			            document.getElementById('spanResposta').innerHTML+=this.result;
+			        };
+			        reader.readAsText(file);
+        			lido=1;
+        		}
         	}
         } catch(e){
         	alert("Erro apendando. "+e.message);
