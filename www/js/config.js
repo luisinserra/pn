@@ -359,6 +359,10 @@ function pegouUm(fileSystem){
 	var pasta=arquivo;
 	arquivo+='/manualBackup.json';
 	alert("Arquivo: "+arquivo);
+	var fsn=fileSystem.name;
+	alert(fsn);
+	var fsrn=fileSystem.root.name;
+	alert(fsrn);
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
 		fileSystem.root.getFile(arquivo, null, gotFileEntry, erroPego);
 		alert("passou o root...");
