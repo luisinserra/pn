@@ -362,7 +362,6 @@ function pegouUm(fileSystem){
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
 	try{
 		fileSystem.root.getFile(arquivo, null, gotFileEntry, erroPego);
-		var x=k;
 		alert("passou o root...");
 		//window.resolveLocalFileSystemURI(pasta, aberto, erroPego);
 		alert("Deve chamar o gotFileEntry...");
