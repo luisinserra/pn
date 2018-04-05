@@ -357,7 +357,7 @@ function pegouUm(fileSystem){
 	alert("Arquivo: "+arquivo);
 	//fileSystem.root.getFile(arquivo, {create: false}, aberto, erroPego);
 	try{
-		window.resolveLocalFileSystemURI(arquivo, gotFile, erroPego);
+		window.resolveLocalFileSystemURI(arquivo, aberto, erroPego);
 		alert("Resolveu.");
 	} catch (e){
 		alert(e.message);
