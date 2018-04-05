@@ -365,11 +365,12 @@ function pegouUm(fileSystem){
 		var x=k;
 		alert("passou o root...");
 		//window.resolveLocalFileSystemURI(pasta, aberto, erroPego);
+		alert("Deve chamar o gotFileEntry...");
 	} catch (e){
 		alert("Ferrou");
+		window.localStorage.setItem('erroGetFile',e.message);
 		alert(e.message);
 	}
-	alert("Deve chamar o gotFileEntry...");
 }
 function aberto(fileEntry){
 	alert("entrou aberto...");
