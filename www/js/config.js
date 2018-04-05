@@ -358,14 +358,18 @@ function pegouUm(fileSystem){
 }
 function aberto(fileEntry){
 	window.localStorage.setItem('msgErro','Erro gerado por função aberto');
-	console.log("Passou abertura passo 1");
-	var reader = fileEntry.createReader();
-	alert("Criou reader para pasta.");
+	alert("Passou abertura passo 1");
+	//var reader = fileEntry.createReader();
+	//alert("Criou reader para pasta.");
 	var arquivo=document.getElementById('tPasta').value;
 	arquivo+='/manualBackup.json';
-	reader = arquivo.createReader();
-	alert("Agora reader para arquivo");
-	fileEntry.file(gotFile, erroPego);
+	try {
+		var reader = arquivo.createReader();
+		alert("Agora reader para arquivo");
+		fileEntry.file(gotFile, erroPego);
+	} catch (e){
+		alert(e.message);
+	}
 }
 function gotFile(file){
 	alert("Definido reader...");
