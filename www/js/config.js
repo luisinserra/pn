@@ -355,11 +355,15 @@ function aberto(fileEntry){
 	fileEntry.file(gotFile, erroPego);
 }
 function gotFile(file){
+	alert("Definido reader...");
 	var reader = new FileReader();
 	reader.onloadend = function(e){
+		alert("onloadend...");
 		var lido=this.result;
 		alert("Leu o resultado");
 		alert(lido);
 	};
+	alert("Acionando reader...");
 	reader.readAsText(file);
+	alert("Acionado");
 }
