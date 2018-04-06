@@ -239,7 +239,7 @@ function successRead2(entries){
 }
 
 function onErrorRead(error) {
-    alert("Failed to list directory contents: " + error.code+","+error.message);
+    //alert("Failed to list directory contents: " + error.code+","+error.message);
 }
 function getPasta(pasta){
 	var anterior=document.getElementById('tPasta').value;
