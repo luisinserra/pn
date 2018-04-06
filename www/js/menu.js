@@ -15,6 +15,7 @@ function OkPega(){
 function getGravado(tx){
 	window.localStorage.setItem('msgErro','Erro select do database');
 	tx.executeSql('SELECT * FROM pesqnotas', [], okPego, trataErro);
+	return false;
 }
 function okPego(tx, results){
 	var n=results.rows.length;
