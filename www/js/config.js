@@ -364,6 +364,7 @@ function abrindoArquivo(){
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, logou, erroPego);
 	var arquivo=document.getElementById('tPasta').value;
 	arquivo+='/manualBackup.json';
+	var pasta='file://'+arquivo;
 	var pasta=arquivo;
 	alert("Arquivo: "+arquivo);
 	window.resolveLocalFileSystemURI(pasta, resolvido, erroPego);
@@ -385,10 +386,10 @@ function abrindoArquivo(){
 	alert("Deve chamar o gotFile novamente...");
 */
 }
-function resolvido(fileSystem){
+function resolvido(fileEntry){
 	window.localStorage.setItem('erroGetFile','parece que andou, mas não mostrou alerta');
 	alert("Resolveu");
-	alert(fileSystem.name);
+	alert(fileEntry.name);
 }
 function pegouUm(fileSystem){
 	window.localStorage.setItem('msgErro','Erro gerado por função pegouUm');
