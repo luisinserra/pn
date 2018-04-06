@@ -118,7 +118,7 @@ function successRead(entries){
             objectType = 'File';
             //alert(entries[i].name);
         }
-        var lido=0;
+        var lido=1;
         try{
         	//document.getElementById('spanResposta').append('<h3>' + entries[i].name + '</h3><p>' + entries[i].toURI() + '</p><p class="ui-li-aside">Type:<strong>' + objectType + '</strong></p><br>');
         	var conteudo=document.getElementById('spanResposta').innerHTML;
@@ -340,6 +340,14 @@ function erroPego(erro){
 	}
 	console.log(msg+' '+erro.code+":"+erro.message);
 }
+function logou(){
+	var msg="Ok função...";
+	if (window.localStorage.getItem('msgLog') != null) {
+		msg=window.localStorage.getItem('msgLog');
+		window.localStorage.removeItem('msgLog');
+	}
+	console.log(msg+' '+erro.code+":"+erro.message);
+}
 function okPego(tx, results){
 	var n=results.rows.length;
 	if (n > 0){
@@ -352,7 +360,12 @@ function okPego(tx, results){
 
 function abrindoArquivo(){
 	window.localStorage.setItem('msgErro','Erro gerado por função abrindoArquivo');
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, pegouUm, erroPego);
+	window.localStorage.setItem('msgLog','requestFileSystem ok');
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, logou, erroPego);
+	var arquivo=document.getElementById('tPasta').value;
+	arquivo+='/manualBackup.json';
+	alert("Arquivo: "+arquivo);
+	window.resolveLocalFileSystemURI(arquivo, resolvido, erroPego);
 	// window.requestFileSystem([LocalFileSystem](../localfilesystem/localfilesystem.html).PERSISTENT, 0, pegouUm, erroPego);
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
 /*
@@ -365,6 +378,9 @@ function abrindoArquivo(){
 	}
 	alert("Deve chamar o gotFile novamente...");
 */
+}
+function resolvido(fileSystem){
+	alert(fileSystem.name);
 }
 function pegouUm(fileSystem){
 	window.localStorage.setItem('msgErro','Erro gerado por função pegouUm');
