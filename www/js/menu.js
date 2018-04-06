@@ -23,7 +23,6 @@ function okPego(tx, results){
 	if (n > 0){
 		var pasta=results.rows.item(0).pasta;
 		console.log("Trouxe "+pasta);
-		document.getElementById('tPasta').value=pasta;
 		window.localStorage.setItem('temPasta','1');
 		window.localStorage.setItem('pastaArquivo',pasta);
 		getTextos();
