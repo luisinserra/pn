@@ -390,6 +390,8 @@ function resolvido(fileEntry){
 	window.localStorage.setItem('erroGetFile','parece que andou, mas não mostrou alerta');
 	alert("Resolveu");
 	alert(fileEntry.name);
+	window.localStorage.setItem('msgErro','Erro ao chamar método file');
+	fileEntry.file(gotFile, erroPego);
 }
 function pegouUm(fileSystem){
 	window.localStorage.setItem('msgErro','Erro gerado por função pegouUm');
