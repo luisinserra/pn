@@ -386,6 +386,7 @@ function abrindoArquivo(){
 */
 }
 function resolvido(fileSystem){
+	window.localStorage.setItem('erroGetFile','parece que andou, mas não mostrou alerta');
 	alert("Resolveu");
 	alert(fileSystem.name);
 }
