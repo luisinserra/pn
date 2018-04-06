@@ -365,7 +365,12 @@ function abrindoArquivo(){
 	var arquivo=document.getElementById('tPasta').value;
 	arquivo+='/manualBackup.json';
 	alert("Arquivo: "+arquivo);
-	window.resolveLocalFileSystemURI(arquivo, resolvido, erroPego);
+	try {
+		window.resolveLocalFileSystemURI(arquivo, resolvido, erroPego);
+	} catch (e){
+		alert(e.message);
+	}
+	alert("Passou por resolveLocalFileSystemURI sem erro");
 	// window.requestFileSystem([LocalFileSystem](../localfilesystem/localfilesystem.html).PERSISTENT, 0, pegouUm, erroPego);
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
 /*
@@ -380,6 +385,7 @@ function abrindoArquivo(){
 */
 }
 function resolvido(fileSystem){
+	alert("Resolveu");
 	alert(fileSystem.name);
 }
 function pegouUm(fileSystem){
