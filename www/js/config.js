@@ -364,13 +364,14 @@ function abrindoArquivo(){
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, logou, erroPego);
 	var arquivo=document.getElementById('tPasta').value;
 	arquivo+='/manualBackup.json';
+	var pasta=arquivo;
 	alert("Arquivo: "+arquivo);
-	try {
-		window.resolveLocalFileSystemURI(arquivo, resolvido, erroPego);
-	} catch (e){
-		alert(e.message);
-	}
-	alert("Passou por resolveLocalFileSystemURI sem erro");
+	window.resolveLocalFileSystemURI(pasta, resolvido, erroPego);
+	// try {
+	// } catch (e){
+	// 	alert(e.message);
+	// }
+	// alert("Passou por resolveLocalFileSystemURI sem erro");
 	// window.requestFileSystem([LocalFileSystem](../localfilesystem/localfilesystem.html).PERSISTENT, 0, pegouUm, erroPego);
     //window.resolveLocalFileSystemURL(cordova.file.applicationDirectory + "www/index.html", gotFile, fail);
 /*
