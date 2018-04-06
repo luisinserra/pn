@@ -25,31 +25,38 @@ function okPego(tx, results){
 		console.log("Trouxe "+pasta);
 		window.localStorage.setItem('temPasta','1');
 		window.localStorage.setItem('pastaArquivo',pasta);
+		console.log("Vai chamar textos...");
 		getTextos();
 	} else {
 		alert("Não encontrei a pasta");
 	}
 	console.log("Varreu "+n);
+	return false;
 }
 function getTextos(){
+	console.log("Em textos...");
 	window.localStorage.setItem('msgErro','Erro resolvendo o local do arquivo');
+	console.log("Vai fazer o request nos arquivos...");
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, OkPega, trataErro);
 	var arquivo=window.localStorage.getItem('pastaArquivo');
 	arquivo+='/manualBackup.json';
 	var pasta='file://'+arquivo;
 	// alert("Arquivo: "+pasta);
+	console.log("AGora resolvendo...");
 	window.resolveLocalFileSystemURI(pasta, resolvido, trataErro);
 }
 function resolvido(fileEntry){
-	// alert(fileEntry.name);
+	console.log(fileEntry.name);
 	window.localStorage.setItem('msgErro','Erro ao chamar método file');
+	console.log("Vai para gotFile...");
 	fileEntry.file(gotFile, trataErro);
 }
 function gotFile(file){
+	console.log("Definindo reader...");
 	var reader = new FileReader();
 	reader.onloadend = function(e){
 		var lido=this.result;
-		// alert(lido);
+		console.log(lido);
 		window.localStorage.setItem('textos',lido);
 	};
 	// alert("Acionando reader...");
@@ -143,6 +150,7 @@ function trataErro(erro){
 		window.localStorage.removeItem('msgErro');
 	}
 	alert(msg+' '+erro.code+":"+erro.message);
+	return false;
 }
 function checaTextos(){
 	var textos=window.localStorage.getItem('textos');
