@@ -365,8 +365,8 @@ function abrindoArquivo(){
 	var arquivo=document.getElementById('tPasta').value;
 	arquivo+='/manualBackup.json';
 	var pasta='file://'+arquivo;
-	var pasta=arquivo;
-	alert("Arquivo: "+arquivo);
+	// var pasta=arquivo;
+	alert("Arquivo: "+pasta);
 	window.resolveLocalFileSystemURI(pasta, resolvido, erroPego);
 	// try {
 	// } catch (e){
