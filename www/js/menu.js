@@ -60,6 +60,7 @@ function initMenu(){
 	},1000);
 }
 function initApk(){
+	document.getElementById('spanBotao').style.display='block';
 	window.localStorage.setItem('msgErro','Erro abrindo database');
 	try {
 		db = window.openDatabase("DbPesqNotas", "1.0", "DbPesqNotas", 10);
